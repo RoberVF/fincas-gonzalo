@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Incluir Finca</title>
+    <%- include('../utils/links') %>
+
+</head>
+
+<body class="container">
+    <div class="d-flex justify-content-between p-4">
+        <h2 class="">Ingresar Dato</h2>
+        <div class="d-flex align-items-center">
+            <a href="/" class="btn btn-danger" role="button">Cancelar</a>
+        </div>
+    </div>
+    <form action="/addFincaAbajo" method="post">
+        <div class="form-group">
+            <label for="name"><small>Accion</small></label>
+            <select name="dataName" id="name" class="form-control">
+                <optgroup label="Establezca una opcion">
+                    <option>-</option>
+                    <option value="Regar">Regar</option>
+                    <option value="Produccion">Produccion</option>
+                    <option value="Sulfatar">Sulfatar</option>
+                    <option value="Otros">Otros</option>
+                </optgroup>
+            </select>
+
+        </div>
+
+        <div class="form-group">
+            <label for="year"><small>Año</small></label>
+            <input type="text" name="dataYear" class="form-control" placeholder="Fecha" id="year">
+        </div>
+
+        <div class="form-group">
+            <label for="info"><small>Informacion</small></label>
+            <input type="text" class="form-control" name="dataInfo" placeholder="Informacion adiccional" id="info">
+        </div>
+            <button type="submit" class="btn btn-primary btn-block">Incluir</button>
+        
+    </form>
+</body>
+
+</html>
