@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lluvias</title>
+    <%- include('../utils/links') %>
+
+</head>
+<body class="container">
+    <div class="d-flex justify-content-around mt-5">
+        <h2>Lluvias</h2>
+        <div class="d-flex align-items-center">
+            <a href="/" class="btn btn-danger btn-small">Volver</a>
+        </div>
+    </div>
+    <% lluvias.forEach((item) => { %>
+        <div class="card mt-4">
+            <div class="card-header"><%= item.dataQuantity %> Litros</div>
+            <div class="card-body">
+                Fecha: <%= item.dataYear %> <br>
+                Informacion: <%= item.dataInfo %>
+            </div>
+        </div>
+
+
+    <% }) %> 
+</body>
+</html>

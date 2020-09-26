@@ -4,6 +4,7 @@ import Abajo from '../models/fincas/Abajo'
 import Chica from '../models/fincas/Chica'
 import Fondo from '../models/fincas/Fondo'
 import Calvaritos from '../models/fincas/Calvaritos'
+import Lluvias from '../models/fincas/Lluvias'
 
 export async function mainPage(req: Request, res: Response){
     res.render("main")
@@ -112,4 +113,24 @@ export async function fincaCalvaritosFormView(req: Request, res:Response){
 export async function fincaCalvaritosView(req: Request, res: Response){
     const fincaCalvaritos= await Calvaritos.find().sort({_id: -1}) //Mas nuevo primero
     res.render("calvaritos/fincaCalvaritos", {fincaCalvaritos})
+}
+
+export async function lluviasForm(req: Request, res: Response){
+    const {dataQuantity, dataInfo, dataYear}= req.body
+    console.log(req.body)
+    const newData= {
+        dataQuantity,
+        dataInfo,
+        dataYear,
+    }
+    const lluvias= new Lluvias(newData)
+    await lluvias.save()
+    res.redirect("lluvias")
+}
+export async function lluviasFormView(req: Request, res:Response){
+    res.render("lluvias/addDataLluvias")
+}
+export async function lluviasView(req: Request, res: Response){
+    const lluvias= await Lluvias.find().sort({_id: -1}) //Mas nuevo primero
+    res.render("lluvias/lluvias", {lluvias})
 }

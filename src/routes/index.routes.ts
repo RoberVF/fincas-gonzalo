@@ -1,5 +1,5 @@
 import {Router, Request, Response} from 'express'
-import { mainPage, fincaMedioForm, fincaMedioFormView, fincaMedioView, fincaAbajoForm, fincaAbajoFormView, fincaAbajoView, fincaChicaForm, fincaChicaFormView, fincaChicaView, fincaFondoForm, fincaFondoFormView, fincaFondoView, fincaCalvaritosForm, fincaCalvaritosFormView, fincaCalvaritosView } from '../controllers/main.controller'
+import { mainPage, fincaMedioForm, fincaMedioFormView, fincaMedioView, fincaAbajoForm, fincaAbajoFormView, fincaAbajoView, fincaChicaForm, fincaChicaFormView, fincaChicaView, fincaFondoForm, fincaFondoFormView, fincaFondoView, fincaCalvaritosForm, fincaCalvaritosFormView, fincaCalvaritosView, lluviasForm, lluviasFormView, lluviasView } from '../controllers/main.controller'
 const router= Router()
 
 // router.route('/').get((req: Request, res: Response)=> {
@@ -42,5 +42,13 @@ router.route('/addFincaCalvaritos')
     .get(fincaCalvaritosFormView)
 router.route('/fincaCalvaritos')
     .get(fincaCalvaritosView)
+
+router.route('/addLluvias')
+    .post(lluviasForm)
+    .get(lluviasFormView)
+router.route('/lluvias')
+    .get(lluviasView)
+
+
 
 module.exports= router

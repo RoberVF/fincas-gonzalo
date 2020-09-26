@@ -36,4 +36,9 @@ router.route('/addFincaCalvaritos')
     .get(main_controller_1.fincaCalvaritosFormView);
 router.route('/fincaCalvaritos')
     .get(main_controller_1.fincaCalvaritosView);
+router.route('/addLluvias')
+    .post(main_controller_1.lluviasForm)
+    .get(main_controller_1.lluviasFormView);
+router.route('/lluvias')
+    .get(main_controller_1.lluviasView);
 module.exports = router;
