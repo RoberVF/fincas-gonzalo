@@ -3,13 +3,14 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
     return (mod && mod.__esModule) ? mod : { "default": mod };
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.lluviasView = exports.lluviasFormView = exports.lluviasForm = exports.fincaCalvaritosView = exports.fincaCalvaritosFormView = exports.fincaCalvaritosForm = exports.fincaFondoView = exports.fincaFondoFormView = exports.fincaFondoForm = exports.fincaChicaView = exports.fincaChicaFormView = exports.fincaChicaForm = exports.fincaAbajoView = exports.fincaAbajoFormView = exports.fincaAbajoForm = exports.fincaMedioView = exports.fincaMedioFormView = exports.fincaMedioForm = exports.mainPage = void 0;
+exports.riegoView = exports.riegoFormView = exports.riegoForm = exports.lluviasView = exports.lluviasFormView = exports.lluviasForm = exports.fincaCalvaritosView = exports.fincaCalvaritosFormView = exports.fincaCalvaritosForm = exports.fincaFondoView = exports.fincaFondoFormView = exports.fincaFondoForm = exports.fincaChicaView = exports.fincaChicaFormView = exports.fincaChicaForm = exports.fincaAbajoView = exports.fincaAbajoFormView = exports.fincaAbajoForm = exports.fincaMedioView = exports.fincaMedioFormView = exports.fincaMedioForm = exports.mainPage = void 0;
 const Medio_1 = __importDefault(require("../models/fincas/Medio"));
 const Abajo_1 = __importDefault(require("../models/fincas/Abajo"));
 const Chica_1 = __importDefault(require("../models/fincas/Chica"));
 const Fondo_1 = __importDefault(require("../models/fincas/Fondo"));
 const Calvaritos_1 = __importDefault(require("../models/fincas/Calvaritos"));
 const Lluvias_1 = __importDefault(require("../models/fincas/Lluvias"));
+const Riego_1 = __importDefault(require("../models/fincas/Riego"));
 async function mainPage(req, res) {
     res.render("main");
 }
@@ -129,6 +130,7 @@ async function fincaCalvaritosView(req, res) {
     res.render("calvaritos/fincaCalvaritos", { fincaCalvaritos });
 }
 exports.fincaCalvaritosView = fincaCalvaritosView;
+//Lluvias
 async function lluviasForm(req, res) {
     const { dataQuantity, dataInfo, dataYear } = req.body;
     console.log(req.body);
@@ -151,3 +153,27 @@ async function lluviasView(req, res) {
     res.render("lluvias/lluvias", { lluvias });
 }
 exports.lluviasView = lluviasView;
+//Riego
+async function riegoForm(req, res) {
+    const { dataQuantity, dataTime, dataYear, dataInfo } = req.body;
+    console.log(req.body);
+    const newData = {
+        dataQuantity,
+        dataTime,
+        dataYear,
+        dataInfo
+    };
+    const riego = new Riego_1.default(newData);
+    await riego.save();
+    res.redirect("riego");
+}
+exports.riegoForm = riegoForm;
+async function riegoFormView(req, res) {
+    res.render("riego/addDataRiego");
+}
+exports.riegoFormView = riegoFormView;
+async function riegoView(req, res) {
+    const riego = await Riego_1.default.find().sort({ _id: -1 }); //Mas nuevo primero
+    res.render("riego/riego", { riego });
+}
+exports.riegoView = riegoView;

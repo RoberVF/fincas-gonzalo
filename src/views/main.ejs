@@ -11,9 +11,12 @@
 
 <body>
     <div class="container mt-4">
-        <div class="d-flex align-items-center justify-content-around">
+        <div class="d-flex align-items-center justify-content-between">
             <h2>Fincas</h2>
-            <a href="/addLluvias" class="btn btn-secondary">Lluvias</a>
+            <div class="d-flex align-items-center">
+                <a href="/addRiego" class="btn btn-secondary mr-1">Riego</a>
+                <a href="/addLluvias" class="btn btn-secondary">Lluvias</a>
+            </div>
         </div>
         <%- include('fincas') %>
     </div>

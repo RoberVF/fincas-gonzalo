@@ -41,4 +41,9 @@ router.route('/addLluvias')
     .get(main_controller_1.lluviasFormView);
 router.route('/lluvias')
     .get(main_controller_1.lluviasView);
+router.route('/addRiego')
+    .post(main_controller_1.riegoForm)
+    .get(main_controller_1.riegoFormView);
+router.route('/riego')
+    .get(main_controller_1.riegoView);
 module.exports = router;
