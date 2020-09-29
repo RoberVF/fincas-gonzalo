@@ -6,6 +6,7 @@ import Fondo from '../models/fincas/Fondo'
 import Calvaritos from '../models/fincas/Calvaritos'
 import Lluvias from '../models/fincas/Lluvias'
 import Riego from '../models/fincas/Riego'
+import Tratamiento from '../models/fincas/Tratamiento'
 
 export async function mainPage(req: Request, res: Response){
     res.render("main")
@@ -157,4 +158,26 @@ export async function riegoFormView(req: Request, res:Response){
 export async function riegoView(req: Request, res: Response){
     const riego= await Riego.find().sort({_id: -1}) //Mas nuevo primero
     res.render("riego/riego", {riego})
+}
+
+//Tratamiento
+export async function tratamientoForm(req: Request, res: Response){
+    const {dataQuantity, dataYear, dataInfo, dataPlace}= req.body
+    console.log(req.body)
+    const newData= {
+        dataQuantity,
+        dataYear,
+        dataInfo,
+        dataPlace
+    }
+    const tratatamiento= new Tratamiento(newData)
+    await tratatamiento.save()
+    res.redirect("tratamiento")
+}
+export async function tratamientoFormView(req: Request, res:Response){
+    res.render("tratamiento/addDataTratamiento")
+}
+export async function tratamientoView(req: Request, res: Response){
+    const tratamiento= await Tratamiento.find().sort({_id: -1}) //Mas nuevo primero
+    res.render("tratamiento/tratamiento", {tratamiento})
 }

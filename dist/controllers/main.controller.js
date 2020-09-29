@@ -3,7 +3,7 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
     return (mod && mod.__esModule) ? mod : { "default": mod };
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.riegoView = exports.riegoFormView = exports.riegoForm = exports.lluviasView = exports.lluviasFormView = exports.lluviasForm = exports.fincaCalvaritosView = exports.fincaCalvaritosFormView = exports.fincaCalvaritosForm = exports.fincaFondoView = exports.fincaFondoFormView = exports.fincaFondoForm = exports.fincaChicaView = exports.fincaChicaFormView = exports.fincaChicaForm = exports.fincaAbajoView = exports.fincaAbajoFormView = exports.fincaAbajoForm = exports.fincaMedioView = exports.fincaMedioFormView = exports.fincaMedioForm = exports.mainPage = void 0;
+exports.tratamientoView = exports.tratamientoFormView = exports.tratamientoForm = exports.riegoView = exports.riegoFormView = exports.riegoForm = exports.lluviasView = exports.lluviasFormView = exports.lluviasForm = exports.fincaCalvaritosView = exports.fincaCalvaritosFormView = exports.fincaCalvaritosForm = exports.fincaFondoView = exports.fincaFondoFormView = exports.fincaFondoForm = exports.fincaChicaView = exports.fincaChicaFormView = exports.fincaChicaForm = exports.fincaAbajoView = exports.fincaAbajoFormView = exports.fincaAbajoForm = exports.fincaMedioView = exports.fincaMedioFormView = exports.fincaMedioForm = exports.mainPage = void 0;
 const Medio_1 = __importDefault(require("../models/fincas/Medio"));
 const Abajo_1 = __importDefault(require("../models/fincas/Abajo"));
 const Chica_1 = __importDefault(require("../models/fincas/Chica"));
@@ -11,6 +11,7 @@ const Fondo_1 = __importDefault(require("../models/fincas/Fondo"));
 const Calvaritos_1 = __importDefault(require("../models/fincas/Calvaritos"));
 const Lluvias_1 = __importDefault(require("../models/fincas/Lluvias"));
 const Riego_1 = __importDefault(require("../models/fincas/Riego"));
+const Tratamiento_1 = __importDefault(require("../models/fincas/Tratamiento"));
 async function mainPage(req, res) {
     res.render("main");
 }
@@ -177,3 +178,27 @@ async function riegoView(req, res) {
     res.render("riego/riego", { riego });
 }
 exports.riegoView = riegoView;
+//Tratamiento
+async function tratamientoForm(req, res) {
+    const { dataQuantity, dataYear, dataInfo, dataPlace } = req.body;
+    console.log(req.body);
+    const newData = {
+        dataQuantity,
+        dataYear,
+        dataInfo,
+        dataPlace
+    };
+    const tratatamiento = new Tratamiento_1.default(newData);
+    await tratatamiento.save();
+    res.redirect("tratamiento");
+}
+exports.tratamientoForm = tratamientoForm;
+async function tratamientoFormView(req, res) {
+    res.render("tratamiento/addDataTratamiento");
+}
+exports.tratamientoFormView = tratamientoFormView;
+async function tratamientoView(req, res) {
+    const tratamiento = await Tratamiento_1.default.find().sort({ _id: -1 }); //Mas nuevo primero
+    res.render("tratamiento/tratamiento", { tratamiento });
+}
+exports.tratamientoView = tratamientoView;
