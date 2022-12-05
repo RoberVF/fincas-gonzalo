@@ -1,8 +1,8 @@
 import {connect} from 'mongoose'
-import dotenv from 'dotenv'
+import * as dotenv from 'dotenv'
 dotenv.config()
 
-const MONGODB_URI= "mongodb+srv://admin:dontfake1@fincas.9hyxb.mongodb.net/test"
+const MONGODB_URI= `mongodb+srv://${process.env.NAME}:${process.env.PASS}@${process.env.DATABASE}`
 
 export async function startConnection(){
     try{
