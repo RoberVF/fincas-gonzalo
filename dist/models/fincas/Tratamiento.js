@@ -7,4 +7,4 @@ const schema = new mongoose_1.Schema({
     dataInfo: String,
     dataPlace: String,
 });
-exports.default = mongoose_1.model("Tratamiento", schema);
+exports.default = (0, mongoose_1.model)("Tratamiento", schema);

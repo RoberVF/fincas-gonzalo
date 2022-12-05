@@ -4,8 +4,6 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "build": "tsc",
-    "clean": "rimraf dist/ images/",
     "start": "node dist/main.js",
     "dev": "nodemon src/main.ts"
   },

@@ -6,4 +6,4 @@ const schema = new mongoose_1.Schema({
     dataYear: String,
     dataInfo: String,
 });
-exports.default = mongoose_1.model("Calvaritos", schema);
+exports.default = (0, mongoose_1.model)("Calvaritos", schema);

@@ -7,4 +7,4 @@ const schema = new mongoose_1.Schema({
     dataTime: Number,
     dataInfo: String,
 });
-exports.default = mongoose_1.model("Riego", schema);
+exports.default = (0, mongoose_1.model)("Riego", schema);
