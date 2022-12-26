@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -7,6 +8,7 @@
     <%- include('../utils/links') %>
 
 </head>
+
 <body class="container">
     <div class="d-flex justify-content-around mt-5">
         <h2>Finca de Los Calvaritos</h2>
@@ -16,14 +18,84 @@
     </div>
     <% fincaCalvaritos.forEach((item) => { %>
         <div class="card mt-4">
-            <div class="card-header"><%= item.dataName %></div>
+            <div class="card-header">
+                <%= item.dataName %>
+            </div>
             <div class="card-body">
-                Fecha: <%= item.dataYear %> <br>
-                Informacion: <%= item.dataInfo %>
+                Fecha:
+                <p class="year">
+                    <%= item.dataYear %>
+                </p>
+                <br> Informacion:
+                <p class="info">
+                    <%= item.dataInfo %>
+                </p>
             </div>
         </div>
+        <% }) %>
 
 
-    <% }) %> 
+            <div>
+                <canvas id="grafica"></canvas>
+            </div>
+            <div class="m-4 "></div>
+
+            <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+            <script>
+                const ctx = document.getElementById("grafica")
+                const year = document.getElementsByClassName("year")
+                const datos = document.getElementsByClassName("info")
+                let datosSinLimpiar = []
+                let todosYears = []
+                let todosDatos = []
+                let eliminarPrincipio = "\n                    "
+                let eliminarFinal = "\n                "
+
+                function limpiar(arrayLimpiar) {
+                    for (let i = 0; i < arrayLimpiar.length; i++) {
+                        arrayLimpiar[i] = arrayLimpiar[i].replace(eliminarPrincipio, "")
+                        arrayLimpiar[i] = arrayLimpiar[i].replace(eliminarFinal, "")
+                    }
+                }
+
+                function soloYear(palabraLimpiar) {
+                    return palabraLimpiar.slice(palabraLimpiar.length - 4, palabraLimpiar.length)
+                }
+
+                //Incluir datos
+                for (let i = 0; i < year.length; i++) {
+                    todosYears.push(year[i].innerHTML)
+                    todosDatos.push(datos[i].innerHTML)
+                    datosSinLimpiar.push(datos[i].innerHTML)
+                }
+                limpiar(todosYears)
+                limpiar(todosDatos)
+
+                //Preparar info
+                for (let i = 0; i < year.length; i++) {
+                    todosDatos[i] = todosDatos[i].split(' ')
+                    todosDatos[i] = todosDatos[i][0]
+                    if (todosYears[i].length > 4) {
+                        todosYears[i] = soloYear(todosYears[i])
+                    }
+                }
+
+                console.log(todosYears)
+                console.log(todosDatos)
+
+                new Chart(ctx, {
+                    type: "bar",
+                    data: {
+                        labels: todosYears,
+                        datasets: [{
+                            label: "Numero de cajas",
+                            data: todosDatos,
+                            borderWidth: 1
+                        }]
+                    }
+                })
+            </script>
+
 </body>
+
 </html>
